@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    
+     environment {
+         //maven相關
+		maven_profile = "-P tgl-sit"
+        maven_ssl_insecure="-Dmaven.wagon.http.ssl.insecure=true -Dmaven.agon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity=true"
+        
+        //image相關
+		base_image="harbor.transglobe.com.tw/library/eclipse-temurin:17-jre-alpine"
+        HarborUser = credentials('adp-robot') 
+
+    }
+    
+    stages {
+        stage('checkout') {
+            steps {
+                script{
+                    git branch: 'main', credentialsId: 'scmAdmin', url: '${GITLAB_URL}'
+                }
+            }
+        }
+        
+        stage('compile build') {
+            steps {
+                script{
+                    withMaven(jdk: 'java-17-openjdk', maven: 'apache-maven-3.8.1', mavenSettingsFilePath: '/home/tools/maven/conf/settings.xml') {
+                        println "Job Name :${JOB_NAME}"
+                        
+                        sh """
+                          mvn clean install -U -X com.google.cloud.tools:jib-maven-plugin:3.3.0:build \
+                          -pl impl \
+                          -am \
+                          -Djib.from.auth.username='$HarborUser_USR'\
+                          -Djib.from.auth.password=$HarborUser_PSW \
+                          -Djib.to.auth.username='$HarborUser_USR' \
+                          -Djib.to.auth.password=$HarborUser_PSW \
+                          -Djib.to.image='${IMAGE_REGISTRY}/${IMAGE_BRANCH}/${IMAGE_NAME}:${TAG}' \
+                          -Djib.allowInsecureRegistries=true \
+                          -Djib.from.image=${base_image} \
+                          -Djib.container.creationTime=USE_CURRENT_TIMESTAMP \
+                          -Dmaven.test.skip=true \
+                          ${maven_ssl_insecure} \
+                          ${maven_profile} \
+                        """
+                    }
+                }    
+
+            }
+
+        }
+    }
+}

@@ -1,0 +1,59 @@
+Started by user Sam Hsu 許智淵
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/sit3adp_adp-clm_deploy
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $API_CRED
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Initialize the variables)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check if image file exists)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: GET
+URL: https://harbor.transglobe.com.tw/api/v2.0/projects/adp/repositories/adp-clm/artifacts/0.0.29?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false
+Sending request to url: https://harbor.transglobe.com.tw/api/v2.0/projects/adp/repositories/adp-clm/artifacts/0.0.29?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false
+Response Code: HTTP/1.1 200 OK
+Success: Status code 200 is in the accepted range: 200,404
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] httpRequest
+HttpMethod: POST
+URL: https://isportal-gw.transglobe.com.tw/eBao/1.0/ops/deployment
+Content-Type: application/json
+Accept: application/json
+x-env-name: issit_tgl
+x-mo-target-tenant: sit3adp
+Authorization: *****
+Sending request to url: https://isportal-gw.transglobe.com.tw/eBao/1.0/ops/deployment
+Response Code: HTTP/1.1 200 OK
+Success: Status code 200 is in the accepted range: 200,400,500
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

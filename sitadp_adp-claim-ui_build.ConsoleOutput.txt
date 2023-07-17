@@ -1,0 +1,816 @@
+Started by user Zero Yan 顏啟倫
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/sitadp_adp-claim-ui_build
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $HarborUser or $HarborUser_PSW
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Setup)
+[Pipeline] deleteDir
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+20230629-12:17:43.260,Job Name :sitadp_adp-claim-ui_build,Tag : 0.0.25
+[Pipeline] echo
+20230629-12:17:43.266,Job Name :sitadp_adp-claim-ui_build, Project : adp-claim-ui
+[Pipeline] echo
+20230629-12:17:43.278,Job Name :sitadp_adp-claim-ui_build, image_whitesource : harbor.transglobe.com.tw/adp/node_adp-claim-ui_production_offline:lts-stretch-slim
+[Pipeline] echo
+20230629-12:17:43.281,Job Name :sitadp_adp-claim-ui_build
+[Pipeline] sh
++ printenv
+RUN_DISPLAY_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/62/display/redirect
+tag=0.0.25
+JENKINS_SLAVE_AGENT_PORT=50000
+GITLAB_OBJECT_KIND=none
+JENKINS_URL=http://10.67.68.8:8095/
+EXECUTOR_NUMBER=0
+_=/usr/bin/printenv
+LANG=C.UTF-8
+TZ=Asia/Taipei
+BUILD_ID=62
+gitlab_project=adp
+HOSTNAME=s1
+RUN_CHANGES_DISPLAY_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/62/display/redirect?page=changes
+JENKINS_UC=https://updates.jenkins.io
+JENKINS_NODE_COOKIE=9bbd7450-1d76-4340-968a-a9d840438093
+JAVA_HOME=/opt/java/openjdk
+JOB_BASE_NAME=sitadp_adp-claim-ui_build
+WORKSPACE_TMP=/var/jenkins_home/workspace/sitadp_adp-claim-ui_build@tmp
+CI=true
+HUDSON_COOKIE=8c776d94-b4fa-4d24-aeb3-18fd7f3d9e5f
+container=oci
+IMAGE_NAME=adp-clm-ui
+BUILD_NUMBER=62
+WORKSPACE=/var/jenkins_home/workspace/sitadp_adp-claim-ui_build
+PWD=/var/jenkins_home/workspace/sitadp_adp-claim-ui_build
+HUDSON_URL=http://10.67.68.8:8095/
+HOME=/root
+HarborUser=****
+NODE_NAME=built-in
+HUDSON_SERVER_COOKIE=aa5923837f320c04
+COPY_REFERENCE_FILE_LOG=/var/jenkins_home/copy_reference_file.log
+JENKINS_HOME=/var/jenkins_home
+JOB_NAME=sitadp_adp-claim-ui_build
+RUN_TESTS_DISPLAY_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/62/display/redirect?page=tests
+REF=/usr/share/jenkins/ref
+HarborUser_PSW=****
+PROJECT=adp-claim-ui
+HUDSON_HOME=/var/jenkins_home
+JOB_DISPLAY_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/display/redirect
+gitlab_repo=adp-claim-ui
+RUN_ARTIFACTS_DISPLAY_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/62/display/redirect?page=artifacts
+BUILD_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/62/
+TERM=xterm
+STAGE_NAME=Setup
+JOB_URL=http://10.67.68.8:8095/job/sitadp_adp-claim-ui_build/
+GITLAB_URL=http://10.67.68.4/ADP/adp-claim-ui.git
+OPENJ9_JAVA_COMMAND_LINE=java -Duser.home=/var/jenkins_home -Djenkins.model.Jenkins.slaveAgentPort=50000 -Dhudson.lifecycle=hudson.lifecycle.ExitLifecycle -jar /usr/share/jenkins/jenkins.war
+revision=main
+BUILD_DISPLAY_NAME=#62
+JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
+harbor=harbor.transglobe.com.tw
+SHLVL=2
+BUILD_TAG=jenkins-sitadp_adp-claim-ui_build-62
+HarborUser_USR=robot$adp+pipelines
+JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
+NODE_LABELS=built-in
+PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+JENKINS_VERSION=2.346.2
+JENKINS_SERVER_COOKIE=durable-d0a3aac5a4847a055876868e32fc65d3ecf0d5d8823796de6dce89e419fd16ed
+image_whitesource=harbor.transglobe.com.tw/adp/node_adp-claim-ui_production_offline:lts-stretch-slim
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (checkout)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] git
+The recommended git tool is: NONE
+using credential scmAdmin
+Cloning the remote Git repository
+Cloning repository http://10.67.68.4/ADP/adp-claim-ui.git
+ > git init /var/jenkins_home/workspace/sitadp_adp-claim-ui_build # timeout=10
+Fetching upstream changes from http://10.67.68.4/ADP/adp-claim-ui.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.31.1'
+using GIT_ASKPASS to set credentials GitLab-SCM
+ > git fetch --tags --force --progress -- http://10.67.68.4/ADP/adp-claim-ui.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url http://10.67.68.4/ADP/adp-claim-ui.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 08eeac5d9084cc03d48a5892e284bc3b93d8a4d3 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 08eeac5d9084cc03d48a5892e284bc3b93d8a4d3 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 08eeac5d9084cc03d48a5892e284bc3b93d8a4d3 # timeout=10
+Commit message: "version 0.0.25"
+ > git rev-list --no-walk 51b4491331b1d6d08f2858ea3cba8e8100c787de # timeout=10
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+gitlab_project:adp
+[Pipeline] echo
+gitlab_repo:adp-claim-ui
+[Pipeline] echo
+tag:0.0.25
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [HarborUser_PSW]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ docker login harbor.transglobe.com.tw --username 'robot$adp+pipelines' --password ****
+Login Succeeded!
++ docker build -t harbor.transglobe.com.tw/adp/adp-clm-ui:0.0.25 . --pull
+[1/2] STEP 1/15: FROM harbor.transglobe.com.tw/coresystem/node_common_lib_offline:beta AS build-env
+Trying to pull harbor.transglobe.com.tw/coresystem/node_common_lib_offline:beta...
+Getting image source signatures
+Copying blob sha256:150bc8d386a3d58a36e055fd85a1f24b37655b94ad0ca2de54c5c2474ce9c61e
+Copying blob sha256:93a756feefc18c4ed1fc337449530a85676407f931d2e639435f60f9ba53a8c9
+Copying blob sha256:1dc472aca539b4ffe3939394393d5d497cf65e0bb0bad27f83f74c4338e9fc83
+Copying blob sha256:126dbb4e8fc003a404a542c1955774b791cc6c538c363784ecda22b6f9c98f46
+Copying blob sha256:2daf78eeb282b2ab64f85004bfbe03f97fbbe3dabcf9ea0faa430d903102b7ba
+Copying blob sha256:d68a613204c685bbf526e27fdc4acc76e6f6822314558257c64ffb7ed4bc5ebd
+Copying blob sha256:634b59484463a80a4fe56b3801a67a7d69bcf1a3c3c669283b551aec2ecfdafd
+Copying blob sha256:67bf8ba3a55bb966a99ec67085cb5f0a47ac06135bed8b73b427f7d1b64c0ecd
+Copying blob sha256:bff3e048017eab8adaed886bad4b3c5c81f7d952b65b056dca8d6dbc198222dd
+Copying blob sha256:93a756feefc18c4ed1fc337449530a85676407f931d2e639435f60f9ba53a8c9
+Copying blob sha256:634b59484463a80a4fe56b3801a67a7d69bcf1a3c3c669283b551aec2ecfdafd
+Copying blob sha256:d68a613204c685bbf526e27fdc4acc76e6f6822314558257c64ffb7ed4bc5ebd
+Copying blob sha256:67bf8ba3a55bb966a99ec67085cb5f0a47ac06135bed8b73b427f7d1b64c0ecd
+Copying config sha256:9db310f61c0f94b04f9f4334fec869793c4184ac9675bae59681788342221d44
+Writing manifest to image destination
+Storing signatures
+[1/2] STEP 2/15: WORKDIR /build
+--> b44500e883f
+[1/2] STEP 3/15: COPY package.json yarn.lock ./
+--> cb2d1ee8eea
+[1/2] STEP 4/15: COPY assets ./assets
+--> 0de465d631f
+[1/2] STEP 5/15: COPY components ./components
+--> cd94fc8025b
+[1/2] STEP 6/15: COPY fonts ./fonts
+--> 479c5a741a2
+[1/2] STEP 7/15: COPY layouts ./layouts
+--> c250f25f011
+[1/2] STEP 8/15: COPY pages ./pages
+--> fbc6ee7ee2e
+[1/2] STEP 9/15: COPY mixins ./mixins
+--> de9b5ba459e
+[1/2] STEP 10/15: COPY plugins ./plugins
+--> a248bbc67ea
+[1/2] STEP 11/15: COPY static ./static
+--> ac1d0ef9abf
+[1/2] STEP 12/15: COPY store ./store
+--> eb86b105fdb
+[1/2] STEP 13/15: COPY server-middleware ./server-middleware
+--> fff73d8d6ff
+[1/2] STEP 14/15: COPY nuxt.config.js jsconfig.json tsconfig.json ./
+--> f43ebc8958a
+[1/2] STEP 15/15: RUN yarn generate --force-build
+yarn run v1.22.19
+$ nuxt generate --force-build
+ℹ Production build
+ℹ Bundling only for client side
+ℹ Target: static
+ℹ Using components loader to optimize imports
+ℹ Discovered Components: node_modules/.cache/nuxt/components/readme.md
+✔ Builder initialized
+✔ Nuxt files generated
+
+ WARN  Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+ℹ Compiling Client
+✔ Client: Compiled successfully in 39.73s
+
+Hash: [1md888878eae695bf86fbc[39m[22m
+Version: webpack [1m4.46.0[39m[22m
+Time: [1m39730[39m[22mms
+Built at: 06/29/2023 [1m4:19:50 AM[39m[22m
+                                                                 [1mAsset[39m[22m       [1mSize[39m[22m                                                                                                                                                                                      [1mChunks[39m[22m  [1m[39m[22m                       [1m[39m[22m       [1mChunk Names[39m[22m
+                                        [1m[32m../server/client.manifest.json[39m[22m   59.7 KiB                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted][39m[22m                     
+                                                            [1m[32m03c683c.js[39m[22m   2.76 KiB                                                                                                                                                                            [1m77, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/claimDeath
+                                                            [1m[33m08a07af.js[39m[22m    [1m[33m312 KiB[39m[22m                                                                         [1m48, 3, 5, 6, 7, 11, 17, 18, 19, 21, 23, 26, 27, 33, 35, 36, 43, 64, 71, 73, 90, 91, 95, 97, 102, 110, 111, 112, 130[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/case/copy
+                                                            [1m[32m0975ccb.js[39m[22m   2.06 KiB                                                                                                                                                                                     [1m147, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/emergency
+                                                            [1m[32m09c6677.js[39m[22m     18 KiB                                                                                                                                                                            [1m78, 19, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/claimPaySummary
+                                                            [1m[32m0a231df.js[39m[22m   13.6 KiB                                                                                                                                                                   [1m150, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/query/claimList
+                                                            [1m[32m0a2e7b0.js[39m[22m   42.8 KiB                                                                                                                                       [1m58, 23, 26, 27, 28, 30, 33, 43, 60, 89, 108, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/accidentCustomer
+                                                            [1m[32m0f4cb50.js[39m[22m  392 bytes                                                                                                                                                                                         [1m134[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/BeneOwner
+                                                            [1m[33m0f5cd82.js[39m[22m    [1m[33m335 KiB[39m[22m                                                [1m49, 3, 5, 6, 7, 11, 17, 18, 19, 21, 23, 26, 27, 33, 35, 36, 43, 50, 59, 64, 65, 66, 71, 73, 80, 90, 91, 95, 97, 102, 110, 111, 112, 130, 140[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/case/detail/_id
+                                                            [1m[32m1072cdb.js[39m[22m   10.2 KiB                                                                                                                                                                                  [1m71, 23, 73[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralDisability
+                                                            [1m[33m10b22d4.js[39m[22m    [1m[33m333 KiB[39m[22m                                                    [1m50, 3, 5, 6, 7, 11, 17, 18, 19, 21, 23, 26, 27, 33, 35, 36, 43, 59, 64, 65, 66, 71, 73, 80, 90, 91, 95, 97, 102, 110, 111, 112, 130, 140[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/case/detail/detail
+                                                            [1m[32m11cb637.js[39m[22m   13.9 KiB                                                                                                                                                                   [1m103, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/postalCode
+                                                            [1m[32m128481c.js[39m[22m   30.7 KiB                                                                                                                                     [1m105, 26, 28, 29, 30, 33, 36, 62, 85, 106, 109, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/receipt
+                                                            [1m[32m1357562.js[39m[22m   22.9 KiB                                                                                                                                                               [1m177, 17, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/superAgent
+                                                            [1m[32m1386091.js[39m[22m  789 bytes                                                                                                                                                                                          [1m26[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-radios
+                                                            [1m[32m1654817.js[39m[22m   21.3 KiB                                                                                                                                                                   [1m159, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/deptCode
+                                                            [1m[32m16a1b3e.js[39m[22m   9.06 KiB                                                                                                                                                                              [1m47, 17, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/balance
+                                                            [1m[32m1782c4e.js[39m[22m   2.11 KiB                                                                                                                                                                                          [1m38[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/amlApi/sendAml
+                                                            [1m[32m17c8196.js[39m[22m   13.5 KiB                                                                                                                                                                  [1m52, 18, 22, 26, 27, 33, 35[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/letter
+                                                            [1m[32m1859c09.js[39m[22m   3.36 KiB                                                                                                                                                                                          [1m24[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-mask-input
+                                                            [1m[32m18680db.js[39m[22m   22.2 KiB                                                                                                                                                                   [1m176, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/specialSurgery
+                                                            [1m[32m18ceb55.js[39m[22m   8.22 KiB                                                                                                                                                                             [1m118, 18, 26, 27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/page-component/sample-1
+                                                            [1m[32m1a40f12.js[39m[22m   44.8 KiB                                                                                                                                                               [1m3, 17, 21, 23, 26, 27, 33, 35[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/close/pages/component/accident/pages/component/claimDeath/pages/component/death/pages/componen/ac5d838b
+                                                            [1m[32m1c8c02e.js[39m[22m   14.2 KiB                                                                                                                                                                    [1m85, 28, 29, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/diagnosisCodeSearch
+                                                            [1m[32m1d25cb9.js[39m[22m   1.52 KiB                                                                                                                                                                                          [1m21[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-date-input
+                                                            [1m[32m1d45af4.js[39m[22m    159 KiB                                                                                                                               [1m56, 18, 19, 43, 81, 90, 91, 102, 107, 110, 111, 136, 138, 140[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/close
+                                                            [1m[32m1d72868.js[39m[22m   22.1 KiB                                                                                                                                                                   [1m157, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/countryCode
+                                                            [1m[32m1dd03ad.js[39m[22m   15.6 KiB                                                                                                                                                               [1m178, 16, 26, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/syncUsers
+                                                            [1m[32m1eb61df.js[39m[22m   10.6 KiB                                                                                                                                                                            [1m30, 28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-sub-search
+                                                            [1m[32m1ef25cc.js[39m[22m   15.5 KiB                                                                                                                                                                    [1m99, 28, 29, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/noticeReason
+                                                            [1m[32m23c2376.js[39m[22m   10.4 KiB                                                                                                                                                                              [1m64, 23, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/cancelCaseButton
+                                                            [1m[32m281c2df.js[39m[22m  238 bytes                                                                                                                                                                                    [1m138, 136[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/payBene
+                                                            [1m[32m282fb67.js[39m[22m   38.2 KiB                                                                                                                                               [1m141, 23, 26, 27, 28, 30, 33, 61, 79, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/payeeInfo
+                                                            [1m[32m2b4720b.js[39m[22m   10.7 KiB                                                                                                                                                                       [1m163, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/fractureLevelCode
+                                                            [1m[32m2e054d2.js[39m[22m   10.7 KiB                                                                                                                                                                       [1m158, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/deathCode
+                                                            [1m[32m2e131fe.js[39m[22m   11.1 KiB                                                                                                                                                                                      [1m90, 91[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/gPolicy
+                                                            [1m[32m2e2f583.js[39m[22m   1.26 KiB                                                                                                                                                                                          [1m25[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-number-input
+                                                            [1m[32m31aa138.js[39m[22m   13.8 KiB                                                                                                                                                                    [1m94, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/incidentCode
+                                                            [1m[33m3285fba.js[39m[22m   [1m[33m1.39 MiB[39m[22m                                                                                                                                                                                         [1m180[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  vendors/app
+                                                            [1m[32m32b2f02.js[39m[22m   4.07 KiB                                                                                                                                                                                         [1m140[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/payInfo
+                                                            [1m[32m35823a4.js[39m[22m   28.3 KiB                                                                                                                                                                              [1m76, 23, 26, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/claimChecklistEditModal
+                                                            [1m[32m35d3f95.js[39m[22m   16.6 KiB                                                                                                                                                                       [1m126, 23, 28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/hisInfo/caseInfo
+                                                            [1m[32m388973a.js[39m[22m  291 bytes                                                                                                                                                                                         [1m130[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/interface/investigation
+                                                            [1m[32m40e75eb.js[39m[22m   27.9 KiB                                                                                                                                          [1m106, 26, 28, 29, 30, 33, 36, 62, 85, 109, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/receiptEditModal
+                                                            [1m[32m42094ae.js[39m[22m   9.91 KiB                                                                                                                                                                 [1m10, 9, 14, 15, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         commons/pages/case/detail/_id/pages/case/detail/detail
+                                                            [1m[32m44068d7.js[39m[22m   2.15 KiB                                                                                                                                                                                          [1m46[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/authRoleTable
+                                                            [1m[32m44c1ae4.js[39m[22m   15.1 KiB                                                                                                                                                                    [1m87, 28, 29, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/disabilitySearch
+                                                            [1m[32m454f6ac.js[39m[22m   44.9 KiB                                                                                                                                                                    [1m57, 18, 19, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/accident
+                                                            [1m[32m487591d.js[39m[22m   11.9 KiB                                                                                                                                                                       [1m171, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/mentalDiagnosis
+                                                            [1m[32m48c20ad.js[39m[22m   12.8 KiB                                                                                                                                                                   [1m161, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/disability
+                                                            [1m[32m49d8561.js[39m[22m     15 KiB                                                                                                                                                           [1m120, 18, 25, 26, 27, 37, 118, 119[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/sample-1
+                                                            [1m[32m4a63146.js[39m[22m  918 bytes                                                                                                                                                                                    [1m133, 134[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/AmlLog
+                                                            [1m[32m4aa690d.js[39m[22m  547 bytes                                                                                                                                                                                [1m81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/death
+                                                            [1m[32m4b47aee.js[39m[22m  257 bytes                                                                                                                                                                                         [1m129[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/index
+                                                            [1m[32m516d9ef.js[39m[22m   10.6 KiB                                                                                                                                                                       [1m167, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/incidentCode
+                                                            [1m[32m51716ec.js[39m[22m  709 bytes                                                                                                                                                                                          [1m73[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralImage
+                                                            [1m[32m51bac5b.js[39m[22m    148 KiB                                                                                                                                   [1m122, 18, 19, 43, 81, 90, 91, 102, 107, 110, 111, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/testResponsive
+                                                            [1m[32m5356ff2.js[39m[22m   2.14 KiB                                                                                                                                                                                          [1m36[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-time-input
+                                                            [1m[32m5392d48.js[39m[22m  238 bytes                                                                                                                                                                                    [1m136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/amlList
+                                                            [1m[32m557d9d0.js[39m[22m    9.6 KiB                                                                                                                                                                                [1m15, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         commons/pages/centralize/centralizeAssignment
+                                                            [1m[32m58c72bd.js[39m[22m   44.9 KiB                                                                                                                   [1m114, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 30, 33, 35, 36, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/formSample
+                                                            [1m[32m5a24b39.js[39m[22m   13.9 KiB                                                                                                                                                                    [1m89, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/foaCode
+                                                            [1m[32m5dacdfa.js[39m[22m   2.92 KiB                                                                                                                                                                                          [1m66[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/caseAuditInfo
+                                                            [1m[32m60d649a.js[39m[22m  671 bytes                                                                                                                                                                                         [1m116[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/page-4
+                                                            [1m[32m65a9a01.js[39m[22m   25.3 KiB                                                                                                                                                         [1m123, 17, 19, 21, 23, 24, 25, 33, 36[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/validate
+                                                            [1m[32m6628d56.js[39m[22m   19.8 KiB                                                                                                                                                                   [1m155, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/claimCode
+                                                            [1m[32m664392b.js[39m[22m   7.61 KiB                                                                                                                                                                                [1m28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-server-side-table
+                                                            [1m[32m6858c2f.js[39m[22m   22.3 KiB                                                                                                                                                                              [1m69, 23, 26, 73[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralCheckfile
+                                                            [1m[32m68cbe95.js[39m[22m    1.7 KiB                                                                                                                                                                                          [1m80[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/ctrsInfo
+                                                            [1m[32m69f7919.js[39m[22m   2.98 KiB                                                                                                                                                                       [1m132, 43, 44, 133, 134[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/AMLSuspect
+                                                            [1m[32m6b77ec3.js[39m[22m     29 KiB                                                                                                                                                                                           [1m0[39m[22m  [1m[32m[emitted] [immutable][39m[22m         vendors/pages/audits/pages/case/_id/pages/case/copy/pages/case/detail/_id/pages/case/detail/detail/p/35bdf48f
+                                                            [1m[32m6c4e0e2.js[39m[22m   16.2 KiB                                                                                                                                                                          [1m40, 17, 23, 25, 27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/assign/setAssign
+                                                            [1m[32m6dc1afa.js[39m[22m   24.2 KiB                                                                                                                                                           [1m175, 17, 23, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/provisionalSeizure
+                                                            [1m[32m6e30794.js[39m[22m   22.2 KiB                                                                                                                                                                   [1m165, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/generalSurgery
+                                                            [1m[32m6e6e00e.js[39m[22m   5.18 KiB                                                                                                                                                                                         [1m111[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/tPolicyInfo
+                                                            [1m[32m6f3761c.js[39m[22m   40.8 KiB                                                                                                                           [1m53, 17, 23, 26, 27, 28, 30, 33, 35, 54, 68, 86, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/note
+                                                            [1m[32m6fbf8c3.js[39m[22m  788 bytes                                                                                                                                                                                          [1m43[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/Customer
+                                                            [1m[32m70b8bbe.js[39m[22m   10.6 KiB                                                                                                                                                                       [1m160, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/diagnosisQuery
+                                                            [1m[32m76078ed.js[39m[22m   4.96 KiB                                                                                                                                                                                     [1m100, 27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/occp
+                                                            [1m[32m7740da9.js[39m[22m   13.8 KiB                                                                                                                                                                    [1m61, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/bankCode
+                                                            [1m[32m77dedf9.js[39m[22m    1.2 KiB                                                                                                                                                                                          [1m22[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-file-input
+                                                            [1m[32m78d8d42.js[39m[22m   5.25 KiB                                                                                                                                                                                          [1m23[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-form
+                                                            [1m[32m7954bc5.js[39m[22m   31.7 KiB                                                                                                                                           [1m75, 17, 23, 26, 28, 30, 33, 73, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralReceipt
+                                                            [1m[32m7a14139.js[39m[22m   19.4 KiB                                                                                                                                                               [1m131, 17, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/mission
+                                                            [1m[32m7c39d10.js[39m[22m   26.1 KiB                                                                                                                                                               [1m169, 23, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/liab
+                                                            [1m[32m7dab822.js[39m[22m   10.5 KiB                                                                                                                                                                       [1m154, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/checklist
+                                                            [1m[33m7e76c22.js[39m[22m    [1m[33m272 KiB[39m[22m                                                                                                                                                                                          [1m13[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  commons/app
+                                                            [1m[32m801b6f6.js[39m[22m   2.05 KiB                                                                                                                                                                                     [1m144, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/archiveDetail
+                                                            [1m[32m80569e7.js[39m[22m   1.82 KiB                                                                                                                                                                                         [1m113[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/buttonSample
+                                                            [1m[32m8238efc.js[39m[22m   34.6 KiB                                                                                                                                       [1m72, 17, 18, 23, 27, 28, 30, 33, 73, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralFatcaAndCrs
+                                                            [1m[32m83d7948.js[39m[22m   14.1 KiB                                                                                                                                                                    [1m96, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/jobCategoryCode
+                                                            [1m[32m84fcda6.js[39m[22m     10 KiB                                                                                                                                                                        [1m98, 28, 31, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/messageLogButton
+                                                            [1m[32m8564915.js[39m[22m   9.91 KiB                                                                                                                                                                 [1m9, 10, 14, 15, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         commons/pages/audits/pages/case/_id
+                                                            [1m[32m8595479.js[39m[22m   13.8 KiB                                                                                                                                                                    [1m82, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/deathCode
+                                                            [1m[32m85d9fbd.js[39m[22m   5.36 KiB                                                                                                                                                                                     [1m101, 19[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/payDaysEditModal
+                                                            [1m[32m8619714.js[39m[22m   13.8 KiB                                                                                                                                                                    [1m79, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/countryCode
+                                                            [1m[32m864228e.js[39m[22m   37.4 KiB                                                                                                                                                [1m83, 17, 26, 27, 28, 30, 33, 86, 92, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/diagnosis
+                                                            [1m[32m8770a80.js[39m[22m   27.5 KiB                                                                                                                               [1m54, 17, 23, 26, 27, 28, 30, 33, 35, 68, 86, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/noteAdd
+                                                            [1m[32m887c493.js[39m[22m   16.8 KiB                                                                                                                                                                       [1m121, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/searchTableSample
+                                                            [1m[32m8d3f5f7.js[39m[22m   27.2 KiB                                                                                                                                                                                   [1m5, 18, 73[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/note/pages/case/noteAdd/pages/centralize/centralizeAssignment/pages/component/centralApply
+                                                            [1m[32m90ab75f.js[39m[22m   14.1 KiB                                                                                                                                                                   [1m109, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/surgeryCode
+                                                            [1m[32m911ee05.js[39m[22m   18.7 KiB                                                                                                                                                                                 [1m63, 19, 101[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/calcLiab
+                                                            [1m[32m9350699.js[39m[22m   5.71 KiB                                                                                                                                                                                         [1m115[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/notifySample
+                                                            [1m[32m94a2c03.js[39m[22m   1.41 KiB                                                                                                                                                                                          [1m32[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-text-double-input
+                                                            [1m[32m966d064.js[39m[22m   13.7 KiB                                                                                                                                                                   [1m104, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/prosOfficeCode
+                                                            [1m[32m968cd3c.js[39m[22m   4.41 KiB                                                                                                                                                                          [1m137, 135, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/legitProcess
+                                                            [1m[32m971de89.js[39m[22m   18.7 KiB                                                                                                                                                    [1m86, 17, 26, 27, 28, 30, 33, 92, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/diagnosisEditModal
+                                                            [1m[32m9751d2a.js[39m[22m   22.7 KiB                                                                                                                                                [1m68, 17, 23, 26, 27, 28, 30, 33, 35, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralApply
+                                                            [1m[32m9828492.js[39m[22m   2.26 KiB                                                                                                                                                                                          [1m19[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-currency-input
+                                                            [1m[32m999534d.js[39m[22m    6.4 KiB                                                                                                                                                                             [1m146, 17, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/dailyAcceptance
+                                                            [1m[32m9a0ddc3.js[39m[22m   56.5 KiB                                                                                                                                        [1m4, 17, 18, 21, 23, 26, 27, 33, 43, 44, 132, 133, 134[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/benefit/pages/component/claimPaySummary/pages/pay/amlList/pages/pay/legitProcess/pages/pay/payBene
+                                                            [1m[32m9a9693f.js[39m[22m   32.9 KiB                                                                                                                                        [1m39, 17, 18, 21, 26, 27, 28, 29, 30, 33, 89, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/assign/assignConfirm
+                                                            [1m[32m9c569c8.js[39m[22m   16.7 KiB                                                                                                                                                               [1m170, 26, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/liabCode
+                                                            [1m[32m9cf0fa9.js[39m[22m   2.74 KiB                                                                                                                                                                                     [1m95, 130[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/investigation
+                                                            [1m[32m9f3a427.js[39m[22m   24.7 KiB                                                                                                                                                           [1m152, 23, 26, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/bankCode
+                                                              [1m[32mLICENSES[39m[22m   3.34 KiB                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted][39m[22m                     
+                                                            [1m[32ma0ed3a6.js[39m[22m   7.25 KiB                                                                                                                                                                                     [1m156, 27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/claimtypeChecklist
+                                                            [1m[32ma30d434.js[39m[22m   9.91 KiB                                                                                                                                                                 [1m14, 9, 10, 15, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         commons/pages/case/copy
+                                                            [1m[33ma46f2f8.js[39m[22m    [1m[33m293 KiB[39m[22m                                                                      [1m124, 5, 6, 7, 9, 10, 11, 14, 15, 18, 19, 34, 36, 43, 57, 63, 73, 77, 81, 90, 91, 95, 101, 102, 110, 111, 130, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/estimates
+                                                            [1m[32ma4c7cca.js[39m[22m   16.7 KiB                                                                                                                                                                                      [1m97, 19[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/liabInfo
+                                                            [1m[32ma6173ef.js[39m[22m   10.7 KiB                                                                                                                                                                       [1m164, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/fractureTypeCode
+                                                            [1m[33ma631793.js[39m[22m    [1m[33m289 KiB[39m[22m                                                                                                                                                                                           [1m1[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  vendors/pages/audits/pages/case/_id/pages/case/copy/pages/case/detail/_id/pages/case/detail/detail/p/076a74e5
+                                                            [1m[32ma7223a7.js[39m[22m   21.3 KiB                                                                                                                                                                                           [1m6[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/note/pages/case/noteAdd/pages/centralize/centralizeAssignment/pages/component/centralDiag/2dc1bd5e
+                                                            [1m[32ma77ece7.js[39m[22m   10.4 KiB                                                                                                                                                                            [1m29, 28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-sub-multi-search
+                                                            [1m[32ma78d205.js[39m[22m   15.4 KiB                                                                                                                                                                                     [1m107, 19[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/riskItem
+                                                            [1m[32ma7a0c92.js[39m[22m   2.52 KiB                                                                                                                                                                                         [1m173[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/permissionQuota
+                                                            [1m[32ma7ba19d.js[39m[22m   2.23 KiB                                                                                                                                                                                          [1m59[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/accountingInfo
+                                                            [1m[32ma8178cc.js[39m[22m   37.8 KiB                                                                                                                                                                                          [1m11[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/note/pages/case/noteAdd
+                                                            [1m[32ma9bf5c4.js[39m[22m   2.44 KiB                                                                                                                                                                                          [1m17[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-calendar-input
+                                                            [1m[32maabca05.js[39m[22m   13.7 KiB                                                                                                                                                               [1m168, 26, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/jobCategoryCode
+                                                            [1m[32mab88d88.js[39m[22m  536 bytes                                                                                                                                                                                         [1m135[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/Legit
+                                                            [1m[32mabf6a07.js[39m[22m   1.64 KiB                                                                                                                                                                                          [1m20[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-data-list
+                                                            [1m[32mb2a7f67.js[39m[22m   1.77 KiB                                                                                                                                                                                          [1m34[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-text-model
+                                                            [1m[32mb33b495.js[39m[22m   2.07 KiB                                                                                                                                                                                     [1m143, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/acceptanceCaseSummary
+                                                            [1m[32mb4921eb.js[39m[22m   5.34 KiB                                                                                                                                                                             [1m149, 17, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/unsolvedCase
+                                                            [1m[32mb5a665d.js[39m[22m  733 bytes                                                                                                                                                                                         [1m142[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/policyApi/policyApis
+                                                            [1m[32mb5a8079.js[39m[22m   12.3 KiB                                                                                                                                                                         [1m139, 17, 18, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/pay/payBeneInfo
+                                                            [1m[32mb630fbf.js[39m[22m   14.2 KiB                                                                                                                                                                    [1m84, 28, 29, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/diagnosisCodeModal
+                                                            [1m[32mb632063.js[39m[22m   4.89 KiB                                                                                                                                                                                      [1m51, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/letGo
+                                                            [1m[32mb652619.js[39m[22m     37 KiB                                                                                                                           [1m67, 17, 23, 26, 27, 28, 30, 33, 35, 70, 73, 86, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralAccidentInfo
+                                                            [1m[32mb729de7.js[39m[22m   28.5 KiB                                                                                                                                                                                       [1m7, 36[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/close/pages/component/diagnosis/pages/component/diagnosisEditModal/pages/demos/testResponsive
+                                                            [1m[32mb9fbfcb.js[39m[22m    4.6 KiB                                                                                                                                                                                         [1m179[39m[22m  [1m[32m[emitted] [immutable][39m[22m         runtime
+                                                            [1m[32mbd303db.js[39m[22m   1.74 KiB                                                                                                                                                                                         [1m102[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/policyFinance
+                                                            [1m[32mbd796e1.js[39m[22m   31.9 KiB                                                                                                                                                                          [1m88, 23, 26, 33, 76[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/file
+                                                            [1m[32mbe1fec6.js[39m[22m   10.6 KiB                                                                                                                                                                       [1m174, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/prosecutorOfficeCode
+                                                            [1m[32mc161402.js[39m[22m   10.8 KiB                                                                                                                                                                              [1m74, 23, 26, 73[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralOccp
+                                                            [1m[32mc2803dc.js[39m[22m   20.1 KiB                                                                                                                                                             [1m127, 23, 28, 126, 128, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/hisInfo/hisInfo
+                                                            [1m[32mc3652ae.js[39m[22m   99.9 KiB                                                                                                                                                                                           [1m2[39m[22m  [1m[32m[emitted] [immutable][39m[22m         vendors/pages/audits/pages/case/_id/pages/case/copy/pages/case/detail/_id/pages/case/detail/detail/p/cf387795
+                                                            [1m[32mc53ddb4.js[39m[22m   9.54 KiB                                                                                                                                                                                 [1m112, 19, 27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/verify
+                                                            [1m[32mcc7f39c.js[39m[22m   8.96 KiB                                                                                                                                                                            [1m31, 28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-sub-search-no-arg
+                                                            [1m[32md19b272.js[39m[22m   2.55 KiB                                                                                                                                                                                          [1m37[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-version-selector
+                                                            [1m[32md20777b.js[39m[22m   9.39 KiB                                                                                                                                                                            [1m93, 81, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/ifrs
+                                                            [1m[32md3f006c.js[39m[22m   18.2 KiB                                                                                                                                                                   [1m162, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/foaCode
+                                                            [1m[33md45f337.js[39m[22m    [1m[33m322 KiB[39m[22m                                                               [1m41, 3, 5, 6, 7, 11, 17, 18, 19, 21, 23, 26, 27, 33, 35, 36, 38, 43, 66, 71, 73, 90, 91, 95, 102, 107, 110, 111, 112, 130, 140[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/audits
+                                                            [1m[32md5729de.js[39m[22m   67.6 KiB                                                                                                                                                                  [1m55, 17, 23, 26, 27, 33, 35[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/centralize/centralizeAssignment
+                                                            [1m[32md637371.js[39m[22m     14 KiB                                                                                                                                                                    [1m92, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/hospitalCode
+                                                            [1m[32md6d6ab6.js[39m[22m  882 bytes                                                                                                                                                                                          [1m33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-text-input
+                                                            [1m[32md70c6b0.js[39m[22m    183 KiB                                                                                                                                                                                          [1m12[39m[22m  [1m[32m[emitted] [immutable][39m[22m         app
+                                                            [1m[32md87af6c.js[39m[22m   31.4 KiB                                                                                                                                                                                      [1m8, 135[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/benefit/pages/component/claimPaySummary/pages/pay/payBene
+                                                            [1m[32mdcfc4cc.js[39m[22m  790 bytes                                                                                                                                                                                          [1m16[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/async-render
+                                                            [1m[32mdd92bb2.js[39m[22m   14.7 KiB                                                                                                                                                               [1m166, 17, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/hospitalCode
+                                                            [1m[32mde13fc0.js[39m[22m  823 bytes                                                                                                                                                                                          [1m35[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-textarea
+                                                            [1m[32mdedce9e.js[39m[22m   6.14 KiB                                                                                                                                                                             [1m145, 17, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/closeClaimDetail
+                                                            [1m[32me3a4598.js[39m[22m     38 KiB                                                                                                                                                                [1m42, 19, 34, 38, 78, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/benefit
+                                                            [1m[32me711e0b.js[39m[22m   20.9 KiB                                                                                                                                                                    [1m60, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/applicantCust
+                                                            [1m[32me77c935.js[39m[22m   24.9 KiB                                                                                                                                           [1m70, 23, 26, 27, 28, 30, 33, 73, 92, 104, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/centralDiagnosisCertification
+                                                            [1m[32me7fafd2.js[39m[22m   20.4 KiB                                                                                                                                                                   [1m172, 23, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/noticeReason
+                                                            [1m[32me89cb0c.js[39m[22m   6.34 KiB                                                                                                                                                                                 [1m119, 25, 37[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/page-component/sample-2
+                                                            [1m[32me999b43.js[39m[22m   8.17 KiB                                                                                                                                                                                          [1m91[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/gPolicyInfℹ [HPM] Proxy created: /product/  -> http://adp-product-tglife.118.163.91.247.nip.io
+ℹ [HPM] Proxy rewrite rule created: "^/product/" ~> ""
+ℹ [HPM] Proxy created: /policy/  -> http://localhost:9001/
+ℹ [HPM] Proxy rewrite rule created: "^/policy/" ~> ""
+ℹ [HPM] Proxy created: /setting/  -> http://localhost:9002/
+ℹ [HPM] Proxy rewrite rule created: "^/setting/" ~> ""
+ℹ [HPM] Proxy created: /auth/  -> http://localhost:9003/
+ℹ [HPM] Proxy rewrite rule created: "^/auth/" ~> ""
+ℹ [HPM] Proxy created: /integration/  -> http://localhost:9003/
+ℹ [HPM] Proxy rewrite rule created: "^/integration/" ~> ""
+ℹ [HPM] Proxy created: /claim/  -> http://localhost:9009/
+ℹ [HPM] Proxy rewrite rule created: "^/claim/" ~> ""
+ℹ [HPM] Proxy created: /finance/  -> http://localhost:9008/
+ℹ [HPM] Proxy rewrite rule created: "^/finance/" ~> ""
+o
+                                                            [1m[32mec46276.js[39m[22m  897 bytes                                                                                                                                                                                          [1m18[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-checkboxs
+                                                            [1m[32mec99f5d.js[39m[22m  395 bytes                                                                                                                                                                                         [1m117[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/demos/page-5
+                                                            [1m[32meeb2b62.js[39m[22m   27.7 KiB                                                                                                                                                   [1m108, 23, 26, 27, 28, 30, 33, 89, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/senderAgent
+                                                            [1m[32mf0a2fd9.js[39m[22m   31.3 KiB                                                                                                                                                           [1m125, 17, 23, 27, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/finance/workbook
+                                                            [1m[32mf161eab.js[39m[22m   1.06 KiB                                                                                                                                                                                          [1m27[39m[22m  [1m[32m[emitted] [immutable][39m[22m         components/t-select
+                                                            [1m[32mf272d33.js[39m[22m  910 bytes                                                                                                                                                                                          [1m44[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/case/PayPayee
+                                                            [1m[33mf46fed4.js[39m[22m    [1m[33m464 KiB[39m[22m  [1m45, 3, 4, 5, 6, 7, 8, 11, 17, 18, 19, 21, 23, 26, 27, 33, 34, 35, 36, 38, 41, 43, 44, 63, 64, 66, 71, 73, 90, 91, 95, 101, 102, 107, 110, 111, 112, 130, 132, 133, 134, 135, 139, 140, 142[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  pages/case/_id
+                                                            [1m[32mf4cc414.js[39m[22m   3.87 KiB                                                                                                                                                                                 [1m151, 27, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/report
+                                                            [1m[32mf601281.js[39m[22m   10.6 KiB                                                                                                                                                                       [1m153, 28, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/setting/burnsCode
+                                                            [1m[32mfccbbe4.js[39m[22m   2.11 KiB                                                                                                                                                                                          [1m65[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/cancelInfo
+                                                            [1m[32mfd68e10.js[39m[22m   13.8 KiB                                                                                                                                                                    [1m62, 28, 30, 33, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/burnsCode
+                                                            [1m[32mfde9b1c.js[39m[22m   8.67 KiB                                                                                                                                                                                    [1m110, 111[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/component/tPolicy
+                                                            [1m[32mfe3c148.js[39m[22m   2.46 KiB                                                                                                                                                                                     [1m148, 33[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/print/risk
+                                                            [1m[32mfe980bb.js[39m[22m   15.7 KiB                                                                                                                                                                       [1m128, 23, 28, 136, 138[39m[22m  [1m[32m[emitted] [immutable][39m[22m         pages/hisInfo/policyInfo
+    [1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-100.576e37e.woff2[39m[22m   [1m[33m1.28 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+     [1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-100.ce4fb00.woff[39m[22m   [1m[33m1.45 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+     [1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-700.4da27ec.woff[39m[22m    [1m[33m1.6 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+    [1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-700.7ab9e4c.woff2[39m[22m   [1m[33m1.44 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+ [1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-regular.64bbf72.woff[39m[22m   [1m[33m1.55 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+[1m[33mfonts/noto-sans-tc-v20-latin_chinese-traditional-regular.eba30f1.woff2[39m[22m   [1m[33m1.38 MiB[39m[22m                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m  [1m[33m[big][39m[22m  
+                                              [1m[32mimg/logo-nav.6879a85.png[39m[22m   19.5 KiB                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m         
+                                                  [1m[32mimg/logo.62c3c50.png[39m[22m   33.6 KiB                                                                                                                                                                                            [1m[39m[22m  [1m[32m[emitted] [immutable][39m[22m         
+ + 1 hidden asset
+Entrypoint [1mapp[39m[22m [1m[33m[big][39m[22m = [1m[32mb9fbfcb.js[39m[22m [1m[32m7e76c22.js[39m[22m [1m[32m3285fba.js[39m[22m [1m[32md70c6b0.js[39m[22m
+
+[1m[33mWARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-100.576e37e.woff2 (1.28 MiB)
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-100.ce4fb00.woff (1.45 MiB)
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-regular.eba30f1.woff2 (1.38 MiB)
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-regular.64bbf72.woff (1.55 MiB)
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-700.7ab9e4c.woff2 (1.44 MiB)
+  fonts/noto-sans-tc-v20-latin_chinese-traditional-700.4da27ec.woff (1.6 MiB)
+  a631793.js (289 KiB)
+  7e76c22.js (272 KiB)
+  d45f337.js (322 KiB)
+  f46fed4.js (464 KiB)
+  08a07af.js (312 KiB)
+  0f5cd82.js (335 KiB)
+  10b22d4.js (333 KiB)
+  a46f2f8.js (293 KiB)
+  3285fba.js (1.39 MiB)[39m[22m
+
+[1m[33mWARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (1000 KiB). This can impact web performance.
+Entrypoints:
+  app (1.84 MiB)
+      b9fbfcb.js
+      7e76c22.js
+      3285fba.js
+      d70c6b0.js
+[39m[22m
+ℹ Generating output directory: dist/
+ℹ Generating pages
+✔ Generated route "/audits"
+✔ Generated route "/benefit"
+✔ Generated route "/estimates"
+✔ Generated route "/report"
+✔ Generated route "/mission"
+✔ Generated route "/close"
+✔ Generated route "/setting/prosecutorOfficeCode"
+✔ Generated route "/setting/provisionalSeizure"
+✔ Generated route "/setting/superAgent"
+✔ Generated route "/setting/specialSurgery"
+✔ Generated route "/setting/syncUsers"
+✔ Generated route "/amlApi/sendAml"
+✔ Generated route "/assign/assignConfirm"
+✔ Generated route "/case/balance"
+✔ Generated route "/centralize/centralizeAssignment"
+✔ Generated route "/component/accident"
+✔ Generated route "/demos/buttonSample"
+✔ Generated route "/finance/workbook"
+✔ Generated route "/pay/amlList"
+✔ Generated route "/interface/investigation"
+✔ Generated route "/policyApi/policyApis"
+✔ Generated route "/print/acceptanceCaseSummary"
+✔ Generated route "/query/claimList"
+✔ Generated route "/setting/bankCode"
+✔ Generated route "/"
+✔ Generated route "/assign/setAssign"
+✔ Generated route "/case/authRoleTable"
+✔ Generated route "/case/copy"
+✔ Generated route "/case/letGo"
+✔ Generated route "/case/note"
+✔ Generated route "/case/noteAdd"
+✔ Generated route "/case/letter"
+✔ Generated route "/case/PayPayee"
+✔ Generated route "/case/Customer"
+✔ Generated route "/component/accountingInfo"
+✔ Generated route "/component/accidentCustomer"
+✔ Generated route "/component/bankCode"
+✔ Generated route "/component/burnsCode"
+✔ Generated route "/component/calcLiab"
+✔ Generated route "/component/cancelCaseButton"
+✔ Generated route "/component/cancelInfo"
+✔ Generated route "/component/caseAuditInfo"
+✔ Generated route "/component/centralApply"
+✔ Generated route "/component/centralCheckfile"
+✔ Generated route "/component/centralDiagnosisCertification"
+✔ Generated route "/component/centralAccidentInfo"
+✔ Generated route "/component/centralFatcaAndCrs"
+✔ Generated route "/component/centralDisability"
+✔ Generated route "/component/centralImage"
+✔ Generated route "/component/centralOccp"
+✔ Generated route "/component/claimChecklistEditModal"
+✔ Generated route "/component/centralReceipt"
+✔ Generated route "/component/claimDeath"
+✔ Generated route "/component/countryCode"
+✔ Generated route "/component/ctrsInfo"
+✔ Generated route "/hisInfo/caseInfo"
+✔ Generated route "/component/claimPaySummary"
+✔ Generated route "/component/deathCode"
+✔ Generated route "/component/death"
+✔ Generated route "/component/diagnosisCodeModal"
+✔ Generated route "/component/file"
+✔ Generated route "/component/diagnosisCodeSearch"
+✔ Generated route "/component/foaCode"
+✔ Generated route "/component/gPolicyInfo"
+✔ Generated route "/component/gPolicy"
+✔ Generated route "/component/hospitalCode"
+✔ Generated route "/component/incidentCode"
+✔ Generated route "/component/ifrs"
+✔ Generated route "/component/investigation"
+✔ Generated route "/component/jobCategoryCode"
+✔ Generated route "/component/messageLogButton"
+✔ Generated route "/component/liabInfo"
+✔ Generated route "/component/noticeReason"
+✔ Generated route "/component/policyFinance"
+✔ Generated route "/component/occp"
+✔ Generated route "/component/payDaysEditModal"
+✔ Generated route "/component/prosOfficeCode"
+✔ Generated route "/component/postalCode"
+✔ Generated route "/component/riskItem"
+✔ Generated route "/component/receipt"
+✔ Generated route "/component/receiptEditModal"
+✔ Generated route "/component/surgeryCode"
+✔ Generated route "/component/senderAgent"
+✔ Generated route "/component/verify"
+✔ Generated route "/component/tPolicy"
+✔ Generated route "/component/tPolicyInfo"
+✔ Generated route "/component/applicantCust"
+✔ Generated route "/demos/formSample"
+✔ Generated route "/demos/page-4"
+✔ Generated route "/demos/page-5"
+✔ Generated route "/demos/sample-1"
+✔ Generated route "/demos/testResponsive"
+✔ Generated route "/demos/searchTableSample"
+✔ Generated route "/demos/validate"
+✔ Generated route "/demos/notifySample"
+✔ Generated route "/hisInfo/hisInfo"
+✔ Generated route "/hisInfo/policyInfo"
+✔ Generated route "/pay/Legit"
+✔ Generated route "/pay/AmlLog"
+✔ Generated route "/pay/legitProcess"
+✔ Generated route "/pay/payBene"
+✔ Generated route "/pay/payBeneInfo"
+✔ Generated route "/pay/payeeInfo"
+✔ Generated route "/pay/payInfo"
+✔ Generated route "/pay/BeneOwner"
+✔ Generated route "/print/archiveDetail"
+✔ Generated route "/pay/AMLSuspect"
+✔ Generated route "/print/closeClaimDetail"
+✔ Generated route "/print/risk"
+✔ Generated route "/print/unsolvedCase"
+✔ Generated route "/print/emergency"
+✔ Generated route "/print/dailyAcceptance"
+✔ Generated route "/setting/claimtypeChecklist"
+✔ Generated route "/setting/burnsCode"
+✔ Generated route "/setting/checklist"
+✔ Generated route "/setting/countryCode"
+✔ Generated route "/setting/deptCode"
+✔ Generated route "/setting/diagnosisQuery"
+✔ Generated route "/setting/foaCode"
+✔ Generated route "/setting/disability"
+✔ Generated route "/setting/fractureLevelCode"
+✔ Generated route "/setting/deathCode"
+✔ Generated route "/setting/fractureTypeCode"
+✔ Generated route "/setting/generalSurgery"
+✔ Generated route "/setting/hospitalCode"
+✔ Generated route "/setting/jobCategoryCode"
+✔ Generated route "/setting/liab"
+✔ Generated route "/setting/liabCode"
+✔ Generated route "/setting/mentalDiagnosis"
+✔ Generated route "/setting/noticeReason"
+✔ Generated route "/setting/claimCode"
+✔ Generated route "/setting/permissionQuota"
+✔ Generated route "/case/detail/detail"
+✔ Generated route "/demos/page-component/sample-1"
+✔ Generated route "/component/diagnosis"
+✔ Generated route "/component/diagnosisEditModal"
+✔ Generated route "/component/disabilitySearch"
+✔ Generated route "/setting/incidentCode"
+✔ Generated route "/demos/page-component/sample-2"
+✔ Client-side fallback created: 200.html
+Done in 43.30s.
+--> a47337e8b22
+[2/2] STEP 1/9: FROM harbor.transglobe.com.tw/adp/nginx-unprivileged:stable-alpine
+Trying to pull harbor.transglobe.com.tw/adp/nginx-unprivileged:stable-alpine...
+Getting image source signatures
+Copying blob sha256:913152e2c69444b431df93d4572313519704b52176bf41fd196d6cc28ba65b60
+Copying blob sha256:052722e881c1465eb58c9ac2bafc164a254188c9f06bd0933d99757ec992fc00
+Copying blob sha256:d61383a18cbc2062c0aee78b477a4204ad13d795c961ac8999671615f6d03633
+Copying blob sha256:691cc14c54375ab0946978b9249f7dc430461e21e03aaaaf1a7b640eef9d3579
+Copying blob sha256:15b060c5124324d53d5452081d473faa070f37a09de51f8b27f22ec0a31870a1
+Copying blob sha256:ec9c71cb05230218a4102075f010e7705627c3a887d02c609218eebdf6a9678f
+Copying blob sha256:97518928ae5f3d52d4164b314a7e73654eb686ecd8aafa0b79acd980773a740d
+Copying config sha256:d155b88067ae0ef8db4535b93c6e65a0c73ddb5832f8eeb8f1753726527ccea9
+Writing manifest to image destination
+Storing signatures
+[2/2] STEP 2/9: COPY --from=build-env /build/dist /usr/share/nginx/html
+--> 6bb2985c8ab
+[2/2] STEP 3/9: COPY nginx.conf /etc/nginx/nginx.conf
+--> 37e6b6ed9b2
+[2/2] STEP 4/9: COPY entrypoint.sh nginx.default.conf.template /tmp/
+--> 951249cc124
+[2/2] STEP 5/9: USER root
+--> 38abb43b022
+[2/2] STEP 6/9: RUN dos2unix /tmp/entrypoint.sh && chmod +x /tmp/entrypoint.sh
+--> 081e870cf41
+[2/2] STEP 7/9: USER 101
+--> 27e99a006d4
+[2/2] STEP 8/9: CMD sh /tmp/entrypoint.sh
+--> 3ec7a9ea3ab
+[2/2] STEP 9/9: EXPOSE 8080
+[2/2] COMMIT harbor.transglobe.com.tw/adp/adp-clm-ui:0.0.25
+--> c9c53ff78e9
+Successfully tagged harbor.transglobe.com.tw/adp/adp-clm-ui:0.0.25
+c9c53ff78e958f318e92b2e8f9b67e8b7936a75f74272498070f4aaff761eace
++ docker push harbor.transglobe.com.tw/adp/adp-clm-ui:0.0.25
+Getting image source signatures
+Copying blob sha256:24c34fa513f9796c5c8541988bad159fc98709fbe66c6da023aefec6060a072e
+Copying blob sha256:0188f7ea1f2c50579e2a567526dbf5a3a9981e9fe21a9945fea19cb19b049fae
+Copying blob sha256:3118ed61d92f642d6a7ccb962909d6600f70a76a73a1a6eaeb1b071e7fe41c82
+Copying blob sha256:1a058d5342cc722ad5439cacae4b2b4eedde51d8fe8800fcf28444302355c16d
+Copying blob sha256:cf106bf31083560310b2fb730b69f922b2210495253b735e36559c1ee60b7408
+Copying blob sha256:1f9e2810747ea7f9f07812f88f15c63c978aef46e349c550ec1b4c3749cff25d
+Copying blob sha256:0e4b659c432815f147c52f74e5f9a40e4e5b6ead74ef149eb1c8035ac9ba6454
+Copying blob sha256:8bdea8a5dffe08cf261a85735fa9f4adca850e0cacdcb2bfa8cecfb41f5013f7
+Copying blob sha256:bcd94d47dc1d71272411b19ea6c2f3d1015f3d2bee3af0eeadd61a3d577c67e1
+Copying blob sha256:178a0684b871409e9ff2a6106125bd929416f5e64232edb2b71ccee0ef4abe00
+Copying blob sha256:2b1e40be54a1fc0a0b421c803e8e5ed4c916f617247aa94b823cea051cbebb27
+Copying config sha256:c9c53ff78e958f318e92b2e8f9b67e8b7936a75f74272498070f4aaff761eace
+Writing manifest to image destination
+Storing signatures
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Remove Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker images -a -q
+[Pipeline] echo
+c9c53ff78e95
+3ec7a9ea3abd
+27e99a006d4a
+081e870cf410
+38abb43b022f
+951249cc1249
+37e6b6ed9b2b
+6bb2985c8abc
+a47337e8b222
+f43ebc8958a4
+fff73d8d6ff9
+eb86b105fdbf
+ac1d0ef9abf7
+a248bbc67eac
+de9b5ba459e8
+fbc6ee7ee2eb
+c250f25f0116
+479c5a741a2e
+cd94fc8025b1
+0de465d631f0
+cb2d1ee8eeaf
+b44500e883fe
+05cba808058b
+a225faff25d0
+0e7c117979c6
+cece4d6870a1
+e5a023892509
+e1706824da15
+df73ceea228f
+c6504e4eff3a
+5854c288e2ad
+8d7d028bbd4a
+83fcd95f496c
+d090bd5d2710
+23756c4553b0
+f4e7b28252ce
+70032af2f322
+9bf459212684
+589841bbc819
+37aa4f70f4cc
+e3166358f43d
+b3e4fda5086b
+8c08cb3596c6
+ab8aa3d3870f
+9fdc955148a2
+e4ddb32828f8
+3a4268f85408
+92cd7bdc9e0e
+67c4d1266260
+e213a75c7a0c
+e3fc061da884
+b5db3c11ce30
+7fbb4fa61a61
+d36608c41348
+5268a27c0453
+5750da9680b9
+017240db33b5
+4f63edfa9b0d
+350ab415c8f3
+6c13ce486eb0
+6a2f14a74e7a
+756efde3c331
+9c2a089fa79a
+19849596fe08
+71bf3c728b07
+095db15c8451
+f865f38d0c63
+09e474f4c630
+14dfef08ced6
+9db310f61c0f
+760757c5ac6d
+c5530cdad3a8
+a5573f2aaacf
+d155b88067ae
+
+[Pipeline] sh
+++ docker images -a -q
++ docker rmi -f c9c53ff78e95 3ec7a9ea3abd 27e99a006d4a 081e870cf410 38abb43b022f 951249cc1249 37e6b6ed9b2b 6bb2985c8abc a47337e8b222 f43ebc8958a4 fff73d8d6ff9 eb86b105fdbf ac1d0ef9abf7 a248bbc67eac de9b5ba459e8 fbc6ee7ee2eb c250f25f0116 479c5a741a2e cd94fc8025b1 0de465d631f0 cb2d1ee8eeaf b44500e883fe 05cba808058b a225faff25d0 0e7c117979c6 cece4d6870a1 e5a023892509 e1706824da15 df73ceea228f c6504e4eff3a 5854c288e2ad 8d7d028bbd4a 83fcd95f496c d090bd5d2710 23756c4553b0 f4e7b28252ce 70032af2f322 9bf459212684 589841bbc819 37aa4f70f4cc e3166358f43d b3e4fda5086b 8c08cb3596c6 ab8aa3d3870f 9fdc955148a2 e4ddb32828f8 3a4268f85408 92cd7bdc9e0e 67c4d1266260 e213a75c7a0c e3fc061da884 b5db3c11ce30 7fbb4fa61a61 d36608c41348 5268a27c0453 5750da9680b9 017240db33b5 4f63edfa9b0d 350ab415c8f3 6c13ce486eb0 6a2f14a74e7a 756efde3c331 9c2a089fa79a 19849596fe08 71bf3c728b07 095db15c8451 f865f38d0c63 09e474f4c630 14dfef08ced6 9db310f61c0f 760757c5ac6d c5530cdad3a8 a5573f2aaacf d155b88067ae
+Untagged: harbor.transglobe.com.tw/adp/adp-clm-ui:0.0.25
+Untagged: harbor.transglobe.com.tw/adp/adp-gi-ui:1.3.41
+Untagged: harbor.transglobe.com.tw/adp/adp-gi-ui:1.3.40
+Untagged: harbor.transglobe.com.tw/adp/ui-build-base-ws:1.0.1
+Untagged: harbor.transglobe.com.tw/adp/ui-build-base:1.0.1
+Untagged: harbor.transglobe.com.tw/adp/node_adp-auth-ui_production_offline:lts-stretch-slim
+Untagged: harbor.transglobe.com.tw/coresystem/node_common_lib_offline:beta
+Untagged: harbor.transglobe.com.tw/adp/node_adp-ta-ui_production_offline:lts-stretch-slim
+Untagged: harbor.transglobe.com.tw/adp/node_adp-portal_production_offline:lts-stretch-slim
+Untagged: harbor.transglobe.com.tw/adp/node_adp-gi-ui_production_offline:lts-stretch-slim
+Untagged: harbor.transglobe.com.tw/adp/nginx-unprivileged:stable-alpine
+Deleted: c9c53ff78e958f318e92b2e8f9b67e8b7936a75f74272498070f4aaff761eace
+Deleted: 3ec7a9ea3abd431d403d927e017e92fbd9e5d189c73b9688243164e88e8b16c7
+Deleted: 27e99a006d4ac42f77c469651a50bc64393fe8a0b7499e5e3c9e1d746b6de42d
+Deleted: 081e870cf410f3345a610555b390a6c85925807e53a5db873a89f28467dbdef6
+Deleted: 38abb43b022f81f85b3df0d213b9216c4898005c439b4e1253baf30bb4b137ab
+Deleted: 951249cc1249fe7ac7b75ad9c12e9d1f57dd0bdd4c04a91af87dccaa23aae0e1
+Deleted: 37e6b6ed9b2bb4d2f3bee3764d3a7e06e995348ae48bfefe4e69dd7a0a295e64
+Deleted: 6bb2985c8abc536050440ca11bc257cf56e6b37645d2641935812ca2ea19ae27
+Deleted: a47337e8b222b3049f058715856e7b6a4c2392c05dfa70f696e02017e674a7f3
+Deleted: f43ebc8958a4a69552ea41dc2b91c9e368fce4f21326d9eca0b9c71228d5b64c
+Deleted: fff73d8d6ff96b0d0834f5f571577d9588bf866365d8b58e9f33920b935f6270
+Deleted: eb86b105fdbf13f96f2a894711cd2d9922e0294764a0ed7ed280f85aede99a33
+Deleted: ac1d0ef9abf73047a4eae20d527e1ef4fc463b25ba8fd8d9c83e78a028015898
+Deleted: a248bbc67eac2d3c11d68c2c089ef1f78c6a2295150a4b6c0017c5be75f7b9a6
+Deleted: de9b5ba459e8f9c5fa4b4d557c16a48fd02340ef82585e9d83660a11da3293a2
+Deleted: fbc6ee7ee2eb62ccc8053ee680be79f7c0c5523fff055ca4d23784c3ddb9c939
+Deleted: c250f25f0116ccef849a774c2ff878f6b5d46ff7f0150edf0ffd5b0c225d0df4
+Deleted: 479c5a741a2e9d79ebe0fe460eb3e1cb81e061292bf3bbe6bc57ea9e82ae3645
+Deleted: cd94fc8025b1c0ac0f2721ee6fddb7580aa52953ce4c4be82088dbb232b44562
+Deleted: 0de465d631f0e7df2b3e7980b86f4553c59bf113ba8da1df62c7b1b768291260
+Deleted: cb2d1ee8eeaf5c2b5e9af2690a9d2849a39eb602564303ad812b74e0ce4f1597
+Deleted: b44500e883fe8dc82e295bdf35e6d131083d2bfce2463d829e9149d494bd5a45
+Deleted: cece4d6870a17cb3112d9c2450aa819eb590ab390ba46de839aa4adc17b6f2cd
+Deleted: e5a023892509c4835dc99182726e3de666242b3118af8b8b565a542367c70dd4
+Deleted: e1706824da1525fb58725bc5801a5ad06c2a0b484a3d456a726c4a1ab91c3be3
+Deleted: df73ceea228f5473d78a362057e241356cbe46eb51817341156bbe31748aa8aa
+Deleted: c6504e4eff3a341ca0c452aa0fc18ce27bc76d9d83add63e09e727201dc7d8c1
+Deleted: a225faff25d09a972cb3d69d32baafd24d4be59d216d54a62e7a4e0a45362923
+Deleted: 0e7c117979c60b05f7833be5a77363a025856a17379216cc76e751b8cc7021f8
+Deleted: 5854c288e2ad0d68a7a77a9d96bffb3d12f782e8ad98ea6abd149829b96dbe0e
+Deleted: 8d7d028bbd4aef9e914c634553db7089e9a591b691a39a6df6f81aab9ac204e5
+Deleted: 83fcd95f496cef1f07a83760afb0bc3760589d01e313d45efc995d717e78b85a
+Deleted: d090bd5d2710afd27df25704c9a699ac80cb22ebe0841860e2e6c0c7cf151dee
+Deleted: 23756c4553b074c0d7211657889c45fec7377431dd9f6ae41555b55c858f44c6
+Deleted: f4e7b28252ce7a56093276c5ab4b14f303a51efffef1d479abfbd758107b7a0d
+Deleted: 70032af2f322ae9bab979b9f73564ea974404db7746af92f42111035076e3c6b
+Deleted: 9bf4592126844d0e3c517c631097f7cd07ba673b7cdcdca6b2364671ce2d48c3
+Deleted: 589841bbc8199a9234bbbba961b682a2dfa47c249883a6cc33e4ff379b060318
+Deleted: 37aa4f70f4ccc135407ac2eafb0b3ec247f22958d22f9979d11d24f2ef413027
+Deleted: e3166358f43d217f8269e78b1e22bf8100fdd4e38824a6251523f8d0d20946f1
+Deleted: b3e4fda5086b116e2fb1f5b9db2c2094fbffc2571fdd25f9023189534c74f9a6
+Deleted: 8c08cb3596c6530e6022c29f3670c0b9385a79e91cc0ac2cc5a66f7ecfc8f02e
+Deleted: ab8aa3d3870f760b71cfa9cfea54aa9c1bb3f8255855a7291a78706176a56c06
+Deleted: 9fdc955148a27cbd6a54434357b7542125e8a6816604885779c431133664022f
+Deleted: e4ddb32828f8995c45f094b2209e9fd18269501cfb2790b0036d31cb6f5e19f0
+Deleted: 3a4268f85408d4e7904e323c882378e3badbde25688af9b3509c8be171555863
+Deleted: 67c4d1266260fe453f9278657b2a495b2fb95cab710fcbca781cdeaf801d4c08
+Deleted: 92cd7bdc9e0e530bd86f9e244f0cb0581a2426bb138b65962e3e439228eeba11
+Deleted: e213a75c7a0cc27ebd779701ee71c31bcf9f520d3b0d12116d2e9447852aed72
+Deleted: e3fc061da88467b077ebefc44aec09f66bbc32613aa2a41c27a4f72d40f1d0f1
+Deleted: b5db3c11ce30961a083805c3fe7d9fa7d9f816d61023561de5fde10cf4ad3962
+Deleted: 7fbb4fa61a6155b6fa16a6d5246b4e7c1822e3bb206e92b4c949582da6be6398
+Deleted: d36608c41348814ef3207ea40240c2968f76035644f8b9d290da3df842c55834
+Deleted: 5268a27c0453dd8bb221ff440ad3b72e91d7b9367e933593e03a756181039032
+Deleted: 5750da9680b9fb9ab22c7d5d3ef427e96dbcd1387ae5291045c895aee4259633
+Deleted: 017240db33b5536c5b74a487c41697978dc245ac98fc99b2956bb93f2fd4efa6
+Deleted: 4f63edfa9b0d3f1278ef52aa6a60f79c0b55a553addb48ed96a6ed411b413d5a
+Deleted: 350ab415c8f3c264af5e6f196d6a1e76af9ac6267c4eba5f5c3cb4512c3cdbc6
+Deleted: 6c13ce486eb0be56a1ebea0ddb7db378fc5a2961401cf1aae9f58ef42a7b256a
+Deleted: 6a2f14a74e7a5000052284bd680bb616e8938ac476be6dd4da5c55ed4cbaef9a
+Deleted: 756efde3c3318d19a55c3dc78e475c3c73ad4d964db351c5294dbf7c42c3caf4
+Deleted: 9c2a089fa79aecac7daeaf90d94b8f88047fd1b19cdbf678f8a03bdbfef84240
+Deleted: 19849596fe08c820bab404f762dfa1e1acf13e364b68fd54b70927ad5c3f9a04
+Deleted: 71bf3c728b0711cd43fb5aff7b8496e25beefbba9bb48f58a1480ab7f9b7c0fc
+Deleted: 095db15c845149ee3f2915c619e4e10d522f9f9f109166b756452240f79d2940
+Deleted: f865f38d0c63fb656d57318600746e2283b42985194aff1027d2e0b6187fda90
+Deleted: 09e474f4c630cc347e995e216e07e7de6a9a002f38702e17a9dac186dfde4de0
+Deleted: 14dfef08ced6fe412145525f8e72d1b7cf17a8b7ab747c68dd6e734f065813d9
+Deleted: 9db310f61c0f94b04f9f4334fec869793c4184ac9675bae59681788342221d44
+Deleted: 760757c5ac6db2018a9a3eec36f3e6b71346e503e8e9e97b1d92a333ea81bb39
+Deleted: c5530cdad3a8576dc1710f160721e4b3b5884a45c894bdbcc2d24ce2824e7690
+Deleted: a5573f2aaacf245adcbe4dbeaa248017e71759f6634e8412baa8fc60f4aa2d92
+Deleted: d155b88067ae0ef8db4535b93c6e65a0c73ddb5832f8eeb8f1753726527ccea9
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

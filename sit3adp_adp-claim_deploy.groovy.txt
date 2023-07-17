@@ -1,0 +1,73 @@
+import groovy.json.JsonSlurper
+
+List<String> IMAGE_NAME_LIST
+String PROJECT_NAME
+String REPOSITORY_NAME
+String getRequestErrorMessage (response) {
+        List<String> message = new JsonSlurper().parseText(response.content).errors.message
+        return '[Error]' + message[0]
+}
+
+pipeline {
+    agent any
+
+    environment {
+        API_CRED = credentials('InsureMO-Bearer-ID')
+        CLUSTER = 'issit_tgl'
+        NAMESPACE = 'sit3adp'
+        APP_NAME = 'adp-clm'
+        IMAGE_NAME = 'harbor.transglobe.com.tw/adp/adp-clm'
+    }
+
+    stages {
+
+        stage('Initialize the variables') {
+            steps {
+                script {
+                    IMAGE_NAME_LIST = IMAGE_NAME.tokenize('/')
+                    IMAGE_NAME_LIST.remove(0)
+                    PROJECT_NAME = IMAGE_NAME_LIST.remove(0)
+                    REPOSITORY_NAME = IMAGE_NAME_LIST.join('/').replaceAll("/","%252F")
+                }
+            }
+        }
+
+        stage('Check if image file exists') {
+            steps {
+                script {
+                    def response = httpRequest ignoreSslErrors: true,
+                    url: """https://harbor.transglobe.com.tw/api/v2.0/projects/$PROJECT_NAME/repositories/$REPOSITORY_NAME/artifacts/$VERSION?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false""",
+                    validResponseCodes: '200,404'
+
+                    if (response.status != 200) {
+                        error(getRequestErrorMessage(response))
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    def response = httpRequest ignoreSslErrors: true,
+                    url: 'https://isportal-gw.transglobe.com.tw/eBao/1.0/ops/deployment',
+                    httpMode: 'POST',
+                    validResponseCodes: '200,400,500',
+                    acceptType: 'APPLICATION_JSON',
+                    contentType : 'APPLICATION_JSON',
+                    customHeaders: [
+                        [name: "x-env-name", value: CLUSTER],
+                        [name: "x-mo-target-tenant", value: NAMESPACE],
+                        [name: "Authorization", value: "Bearer "+ API_CRED]
+                    ],
+                    requestBody: """{"app_name": "$APP_NAME","image_name": "$IMAGE_NAME:$VERSION","images": [],"replicas": 0,"params": {},"status": {"replicas": 0,"availableReplicas": 0,"updatedReplicas": 0,"unavailableReplicas": 0,"readyReplicas": 0}}"""
+                                    
+                    if (response.status != 200) {
+                        error(getRequestErrorMessage(response))
+                    }
+                }
+            }
+        }
+
+    }
+}

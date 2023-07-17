@@ -1,0 +1,160 @@
+pipeline {
+    agent any
+
+    environment {
+// 		gitlab_proto = "http"
+// 		gitlab_host = "10.67.68.4"
+//         GitLabUser = credentials('ADP01')
+        
+        harbor = "harbor.transglobe.com.tw"
+        HarborUser = credentials('adp-robot') 
+    }
+
+    parameters {
+        string(description: '要包版的分支', name: 'revision', defaultValue: 'main',trim: true)
+        string(description: '1.輸入值為Gitlab push tag \n 2.產生image tag 其規則判斷: \n a.輸入:1.0.0，只產生1.0.0 tag的image \n b.輸入:1.0.0-rc1，產生1.0.0跟1.0.0-rc1兩個tag 的image \n c.不支援輸入多個標籤', name: 'tag', defaultValue: '',trim: true)
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                //清理workspace
+                deleteDir()
+                
+                script{
+                    //tag判斷
+                    if("${TAG}".contains(',')){
+                        error "Multiple tags are not supported"
+                    }
+                    
+                    env.RELEASE_TAG=""
+                    if("${TAG}".split("-rc").size() >1){
+                        env.RELEASE_TAG= "${TAG}".split("-rc")[0]
+                        println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME},Tag : ${TAG}、${env.RELEASE_TAG}"
+                    }else{
+                        println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME},Tag : ${TAG}"
+                    }
+
+                    
+    
+
+                    env.PROJECT = "${JOB_NAME}".replace("sitadp_","").replace("_build","")  //Job Name : sitadp_adp-claim-ui_build
+                    println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME}, Project : ${env.PROJECT}"
+
+                    env.gitlab_project = "${env.PROJECT}".split("-")[0]
+		            env.gitlab_repo = "${env.PROJECT}"
+		            
+		            //whitesource file從image取得
+		            env.image_whitesource="${harbor}/${env.gitlab_project}/node_${PROJECT}_production_offline:lts-stretch-slim"
+		            println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME}, image_whitesource : ${env.image_whitesource}"
+		            
+		            
+		            println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME}"
+                    sh "printenv"
+                }
+            }
+        }
+        
+    //     stage('Clone') {
+    //         steps {
+    //              sh """
+		  //          git -c http.sslVerify=false clone \
+			 //  	    ${gitlab_proto}://$GitLabUser_USR:$GitLabUser_PSW@${gitlab_host}/${env.gitlab_project}/${env.gitlab_repo}.git
+					
+				// """
+				// // http://10.67.68.4/ADP/adp-claim-ui.git
+    //             dir("${env.gitlab_repo}") {
+    //                 sh 'git checkout ${revision}'
+    //             }
+    //         }
+    //     } 
+    
+        stage('checkout') {
+            steps {
+                script{
+                    git branch: 'main', credentialsId: 'scmAdmin', url: '${GITLAB_URL}'
+                }
+            }
+        }
+        
+        // stage('Create Tag'){
+        //     steps{
+        //         dir("${env.gitlab_repo}") {
+        //             sh"""
+        //               git tag ${tag}
+        //               git push origin ${tag}
+        //             """
+        //         }
+        //     }
+        // }
+        
+        stage('Build') {
+            steps {
+                // dir("${env.gitlab_repo}") {
+                    script{
+                        if( "${env.RELEASE_TAG}" !="" ){
+                            println"tags:${TAG},${env.RELEASE_TAG}"
+                            sh"""
+                            docker login ${harbor} --username '$HarborUser_USR' --password $HarborUser_PSW
+                            docker build -t ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${TAG} -t ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${env.RELEASE_TAG} . --pull
+                            docker push ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${TAG}
+                            docker push ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${env.RELEASE_TAG}
+                            """
+                        }else{
+                            println"gitlab_project:${env.gitlab_project}"
+                            println"gitlab_repo:${env.gitlab_repo}"
+                            println"tag:${TAG}"
+                            sh"""
+                            docker login ${harbor} --username '$HarborUser_USR' --password $HarborUser_PSW
+                            docker build -t ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${TAG} . --pull
+                            docker push ${harbor}/${env.gitlab_project}/${IMAGE_NAME}:${TAG}
+                            """
+                        }
+                    }
+                // }
+          }
+        }
+        
+        // stage('move file'){
+        //     steps{
+        //         script{
+        //             //for whitesource
+        //             sh"""
+        //                 mkdir ${env.WORKSPACE}/ws 
+        //                 docker run -u 0 --rm --entrypoint=cp -v ${env.WORKSPACE}/ws:/ws/data ${env.image_whitesource} '-r /build/node_modules /ws/data'
+        //              """
+                    
+        //             println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME}"
+        //             sh "ls ${env.WORKSPACE}/ws"
+                    
+        //             //for checkmarx
+        //             sh """
+        //                 mkdir -p ${env.WORKSPACE}/cx
+        //                 cp -r  ${env.WORKSPACE}/${env.gitlab_repo}/assets ${env.WORKSPACE}/cx/
+        //                 cp -r  ${env.WORKSPACE}/${env.gitlab_repo}/components ${env.WORKSPACE}/cx/
+        //                 cp -r  ${env.WORKSPACE}/${env.gitlab_repo}/layouts ${env.WORKSPACE}/cx/
+        //                 cp -r  ${env.WORKSPACE}/${env.gitlab_repo}/pages ${env.WORKSPACE}/cx/
+        //             """
+                    
+        //             println "${new Date().format('yyyyMMdd-HH:mm:ss.SSS')},Job Name :${JOB_NAME}"
+        //             sh "ls ${env.WORKSPACE}/cx"
+                    
+        //         }
+        //     }
+        // }
+        
+        stage('Remove Image'){
+            steps{
+                script{
+                    def isRemove = sh(script: "docker images -a -q", returnStdout: true)
+                    println isRemove
+                    if(isRemove){
+                     sh script: '''
+                        docker rmi -f $(docker images -a -q)
+                    '''
+                    }
+                }
+            }
+        }
+    }
+}
