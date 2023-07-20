@@ -1,0 +1,39 @@
+1.修改application.yml
+  adp:
+    claim:
+      api-client:
+        enabled: true
+        url: ${CLAIM_API_CLIENT_URL:localhost:8080}
+    product:
+      api-client:
+        enabled: true
+        url: ${PRODUCT_API_CLIENT_URL:localhost:9000}
+    setting:
+      api-client:
+        enabled: true
+        url: ${SETTING_API_CLIENT_URL:https://setting.sit3adp.transglobe.com.tw}
+#        url: ${SETTING_API_CLIENT_URL:localhost:9002}
+    integration:
+      api-client:
+        enabled: true
+        url: ${INTEGRATION_API_CLIENT_URL:https://integration.sit3adp.transglobe.com.tw}
+ #       url: ${INTEGRATION_API_CLIENT_URL:localhost:9004}
+    auth:
+      api-client:
+        enabled: true
+        url: ${AUTH_API_CLIENT_URL:https://auth.sit3adp.transglobe.com.tw}
+ #       url: ${AUTH_API_CLIENT_URL:localhost:9003}
+    policy:
+      api-client:
+        enabled: true
+        url: ${POLICY_API_CLIENT_URL:https://policy.sit3adp.transglobe.com.tw}
+#        url: ${POLICY_API_CLIENT_URL:localhost:9001}
+
+2.下載憑證:
+  chrome>查看網站資訊>已建立安全連線>憑證有效>詳細資訊>匯出
+
+3.匯入憑證至JVM
+  keytool -import -alias example -keystore  "D:\Users\NCS31\java-17-openjdk-17.0.2.0.8-1.win.x86_64\lib\security\cacerts" -file _.sit3adp.transglobe.com.tw.crt
+  輸入金鑰儲存庫密碼:changeit
+
+4.重起adp-claim服務
